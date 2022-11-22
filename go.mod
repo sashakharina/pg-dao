@@ -1,4 +1,4 @@
-module github.com/olegfomenko/pg-dao
+module github.com/sashakharina/pg-dao
 
 go 1.16
 

@@ -3,12 +3,13 @@ package pg_dao
 import (
 	"database/sql"
 	"fmt"
+	"reflect"
+	"time"
+
 	sq "github.com/Masterminds/squirrel"
 	"github.com/fatih/structs"
 	"gitlab.com/distributed_lab/kit/pgdb"
 	"gitlab.com/distributed_lab/logan/v3/errors"
-	"reflect"
-	"time"
 )
 
 type dao struct {
@@ -111,6 +112,11 @@ func (d *dao) FilterLess(col string, val interface{}) DAO {
 
 func (d *dao) FilterByColumn(col string, val interface{}) DAO {
 	d.sql = d.sql.Where(sq.Eq{col: val})
+	return d
+}
+
+func (d *dao) FilterByColumnCaseInsensetive(col string, val interface{}) DAO {
+	d.sql = d.sql.Where(sq.ILike{col: val})
 	return d
 }
 

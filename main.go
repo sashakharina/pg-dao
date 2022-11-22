@@ -2,6 +2,7 @@ package pg_dao
 
 import (
 	"database/sql"
+
 	"gitlab.com/distributed_lab/kit/pgdb"
 	"gitlab.com/distributed_lab/logan/v3/errors"
 )
@@ -27,6 +28,7 @@ type DAO interface {
 	FilterGreater(col string, val interface{}) DAO
 	FilterLess(col string, val interface{}) DAO
 	FilterByColumn(col string, val interface{}) DAO
+	FilterByColumnCaseInsensetive(col string, val interface{}) DAO
 
 	Get(dto interface{}) (bool, error)
 	Select(list interface{}) error
